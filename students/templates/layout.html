@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <title>{% block title %} {% endblock %}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<!--  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">-->
+<!--  <script src="{% static 'js/jquery.min.js' %}" ></script>-->
+<!--  <script src="{% static 'js/bootstrap.min.js' %}"></script>-->
+</head>
+<body>
+{% load static %}
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img src="media/static/4057401-large.jpeg" width="150" height="60">
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="glyphicon"><a href="/students">STUDENTS LIST</a></li>
+      {% if student %}
+      {% for i in student %}
+      <li><a href="/logout"><span class="glyphicon glyphicon-user"></span>Logut : {{ i.username }}</a></li>
+      {% endfor %}
+      {% else %}
+      <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  {% block content %}
+
+
+  {%  endblock %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<body>
+{% load crispy_forms_tags %}
+
+<h4> {{ message }} </h4>
+
+<form action="" method="post" novalidate> {% csrf_token %}
+
+    {{ form2 | crispy }}
+
+    <input type="submit" value="SUBMIT" class="btn btn-danger">
+
+</form>
+
+
+</body>
+
+
+{% endblock %}

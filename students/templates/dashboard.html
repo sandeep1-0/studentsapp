@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<body>
+{% load static %}
+
+{% if student %}
+
+{% for i in student %}
+
+<h2>FIRST NAME : {{ i.firstname }}</h2>
+<h2>LAST NAME : {{i.lastname }}</h2>
+<h2>DEPARTMENT : {{ i.student_dpt }}</h2>
+<img src='{{i.student_img}}' height="200" width="200">
+
+<a href="/update?username={{i.username}}" class="btn btn-primary btn-xs">UPDATE</a>
+
+{% endfor %}
+
+{% else %}
+
+<h4><a href="/logout">Login Again</a></h4>
+
+
+{% endif %}
+
+</body>
+{% endblock %}

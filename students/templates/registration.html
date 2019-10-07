@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<body>
+{% load crispy_forms_tags %}
+
+<form action="" enctype='multipart/form-data' method="post" novalidate>{% csrf_token %}
+
+    {{ form | crispy }}
+
+    <input type="submit" value="NEXT" class="btn btn-primary">
+
+</form>
+
+</body>
+{% endblock %}
