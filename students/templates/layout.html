@@ -21,12 +21,12 @@
       <img src="media/static/4057401-large.jpeg" width="150" height="60">
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li class="glyphicon"><a href="/students">STUDENTS LIST</a></li>
       {% if student %}
       {% for i in student %}
-      <li><a href="/logout"><span class="glyphicon glyphicon-user"></span>Logut : {{ i.username }}</a></li>
+      <li><a href="/logout"><span class="glyphicon glyphicon-user"></span>Logut : {{ i.firstname }}</a></li>
       {% endfor %}
       {% else %}
+      <li class="glyphicon"><a href="/students">STUDENTS LIST</a></li>
       <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       {% endif %}

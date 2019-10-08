@@ -18,7 +18,6 @@ def Registration(request):
             print("once more")
             return HttpResponseRedirect('detailform')
     context = {'form': form}
-    print('here')
     return render(request, 'registration.html', context)
 
 
@@ -70,22 +69,20 @@ def logout(request):
 
 
 def update(request):
+    print(request.user.username)
     user = request.GET['username']
     data = details.objects.filter(username=User.objects.get(username=user)).first()
-    print(data)
     form3 = fulldetails(instance=data)
     if request.method == 'POST':
-        form3 = fulldetails(request.POST or None, request.FILES or None, instance=data)
-        if form3.is_valid():
-            student = details()
-            User.username = user
-            student.firstname = form3.cleaned_data['firstname']
-            student.lastname = form3.cleaned_data['lastname']
-            student.student_dpt = form3.cleaned_data['student_dpt']
-            student.student_img = request.FILES.get('student_img')
-            student.save()
-        return redirect(dashboard)
+        data.firstname = request.POST['firstname']
+        data.lastname = request.POST['lastname']
+        data.student_dpt = request.POST['student_dpt']
+        if request.FILES.get('student_img'):
+            data.student_img = request.FILES.get('student_img')
+        data.save()
+        return render(request, 'dashboard.html', {'data': data})
     return render(request, 'update.html', {'form3': form3})
+
 
 def delete(request):
     user = request.GET['username']
@@ -96,5 +93,4 @@ def delete(request):
     return redirect(viewall)
 def viewall(request):
     students = details.objects.all()
-    print(students)
     return render(request,'viewall.html',{'students':students})
